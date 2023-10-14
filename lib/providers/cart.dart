@@ -64,4 +64,9 @@ class Cart with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void removeItem(String productId, {required bool listen}){
+    _items.remove(productId);
+    notifyListeners();
+  }
 }
