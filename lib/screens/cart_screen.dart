@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/providers/cart.dart' show Cart;
 import 'package:provider/provider.dart';
 import '../widgets/cart_item.dart';
+import '../providers/orders.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
-
+  
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -36,7 +37,11 @@ class CartScreen extends StatelessWidget {
                   backgroundColor: Theme.of(context).colorScheme.primary,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Orders>(context, listen: false)
+                        .addOrder(cart.items.values.toList(), cart.totalAmount);
+                        cart.clear();
+                  },
                   child: Text('Check Out'),
                 )
                 // style: ElevatedButton.styleFrom(),
@@ -51,7 +56,7 @@ class CartScreen extends StatelessWidget {
             child: ListView.builder(
           itemBuilder: (ctx, i) => CartItem(
               id: cart.items.values.toList()[i].id,
-              productId: cart.items.keys.toList()[i], 
+              productId: cart.items.keys.toList()[i],
               quantity: cart.items.values.toList()[i].quantity,
               price: cart.items.values.toList()[i].price,
               title: cart.items.values.toList()[i].title),
