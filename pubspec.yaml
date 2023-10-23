@@ -27,9 +27,9 @@ dependencies:
   badges: ^3.1.2
   intl: ^0.18.1
 
-  dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # dev_dependencies:
+  # flutter_test:
+  #   sdk: flutter
 
 
 # For information on the generic Dart part of this file, see the
