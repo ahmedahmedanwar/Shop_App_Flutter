@@ -31,8 +31,27 @@ class CartItem extends StatelessWidget {
             size: 40,
           ),
           alignment: Alignment.centerRight),
-          direction: DismissDirection.endToStart,
-          onDismissed: (direction) => Provider.of<Cart>(context,listen: false).removeItem(productId,listen: false),
+      direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) => showAdaptiveDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Delete item ?'),
+          content: Text(
+            'Do you want to delete this item ',
+          ),
+          actions: [
+          ElevatedButton(onPressed: (){
+            Navigator.of(ctx).pop(false);
+          }, child: Text('No')),
+          ElevatedButton(onPressed: (){
+            Navigator.of(ctx).pop(true);
+          }, child: Text('Yes')),
+          ],
+        ),
+      ),
+      onDismissed: (direction) => Provider.of<Cart>(context, listen: false)
+          .removeItem(productId, listen: false),
+          
       child: Card(
           margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
           child: Padding(
