@@ -4,7 +4,7 @@ import '../providers/products.dart';
 import '../widgets/user_product_item.dart';
 import '../widgets/main_drawer.dart';
 import '../screens/edite_product_screen.dart';
-
+import 'package:http/http.dart';
 class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user_product_screen';
 
@@ -27,6 +27,7 @@ class UserProductsScreen extends StatelessWidget {
         child: ListView.builder(
           itemBuilder: (_, i) => Column(
             children:[ UserProductItem(
+                id: productsData.items[i].id ,
                 title: productsData.items[i].title,
                 imageUrl: productsData.items[i].imageUrl),
                 Divider(),
